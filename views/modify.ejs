@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>
+      <%= heading %>
+    </h1>
+
+    <% if (locals.post) { %>
+      <form id="editForm" method="post" action="/posts/<%=post.id%>">
+        <input type="text" name="title" value="<%=post.title %>">
+        <textarea name="content" rows="10"><%=post.content %></textarea>
+        <input type="text" name="author" value="<%=post.author %>">
+          <input type="text" name="book_id_type" value="<%=post.book_id_type %>">
+         <input type="text" name="book_id" value="<%=post.book_id %>">
+         <input type="text" name="rating" value = "<%=post.rating%>">
+        <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+      </form>
+      <% } else {%>
+        <form id="newPostForm" method="post" action="/posts">
+          <input type="text" name="title" placeholder="Title" required>
+          <textarea name="content" placeholder="Content" required rows="10"></textarea>
+          <input type="text" name="author" placeholder="Author" required>
+        
+            <select name="book_id_type" required>
+    <option value="" disabled selected>Select identifier type...</option>
+    <option value="isbn">ISBN</option>
+    <option value="oclc">OCLC</option>
+    <option value="lccn">LCCN</option>
+    <option value="olid">OLID</option>
+    <option value="id">ID</option>
+  </select> 
+     <input type="text" name="book_id" placeholder="book_id" required>
+             <input type="text" name="rating" placeholder="Rating" required>
+
+          <button class="full-width" type="submit">
+            <%= submit %>
+          </button>
+        </form>
+        <% } %>
+
+  </div>
+</body>
+
+</html>
